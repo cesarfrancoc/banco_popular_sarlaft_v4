@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="../../index.css">
+<link rel="stylesheet" href="../../cjs/jquery.mCustomScrollbar.css" />
+<link href="../../fonts/font-awesome/css/all.css" rel="stylesheet">
+<script src="../../cjs/easeljs-0.8.2.min.js"></script> 
+<script src="../../cjs/tweenjs-0.6.2.min.js"></script> 
+<script src="../../cjs/preloadjs-0.6.2.min.js"></script> 
+<script src="../../cjs/soundjs-0.6.2.min.js"></script> 
+<script src="page.js"></script> 
+<script src="../../principal.js"></script> 
+<script src="../../cjs/jquery.min.js"></script> 
+<script src="../../cjs/jquery.imagemapster.js"></script> 
+<script src="../../cjs/jquery.mCustomScrollbar.concat.min.js"></script> 
+<script src="../../cjs/jquery-ui.min.js"></script> 
+<script src="../../cjs/jquery.ui.touch-punch.min.js"></script> 
+<script>
+	
+	
+var canvas, stage, exportRoot;
+function init() {
+	canvas = document.getElementById("canvas");
+	var loader = new createjs.LoadQueue(false);
+	loader.installPlugin(createjs.Sound);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.addEventListener("progress", handleProgress);
+	loader.loadManifest(lib.properties.manifest);
+  $.getJSON("../../images/animaciones_atlas_.json", function(json) {
+      frames_animacion = json.frames;
+    });
+}
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+function playSound(id, loop) {
+	createjs.Sound.play(id, createjs.Sound.INTERRUPT_EARLY, 0, 0, loop);
+}
+ancho_linea = 0;
+alto_linea = 10;
+max_ancho = 450;
+function handleProgress(evt) {
+	stage = new createjs.Stage(canvas);
+	var bordePadding = 2;
+    var borde = new createjs.Shape;
+    borde.graphics.beginFill("rgba(131,120,111,0.4)").drawRect(0, 0, max_ancho + bordePadding*2, alto_linea).endFill();
+    var linea_carga = new createjs.Shape();
+	linea_carga.graphics.beginFill("#009DDF").drawRect(0 + bordePadding,0 + bordePadding, ancho_linea, alto_linea - bordePadding*2).endFill();
+    progreso = Math.round(evt.loaded * max_ancho);
+	ancho_linea = progreso;
+	contenedor = new createjs.Container();
+	contenedor.x = 1240/2 - max_ancho/2;
+	contenedor.y = 495*4/5 - alto_linea/2;
+	contenedor.addChild(borde, linea_carga);
+	//stage.addChild(contenedor);
+	stage.update();
+}
+function handleComplete(evt) {
+	var queue = evt.target;
+	stage = new createjs.Stage(canvas);
+	createjs.Ticker.addEventListener("tick", stage);
+	/////Variables
+	sin_personaje = true;
+	globo_personaje = "Empecemos identificando la importancia del programa de bloqueo y etiquetado, las actividades en las que se debe aplicar y algunos conceptos asociados.";
+	pausas_audio = [[0,16406],[977,19347]];
+
+  coord_flecha_next = [900,100];
+
+  contenidos();	
+}
+</script>
+</head>
+<body onload="init();">
+<canvas id="canvas" width="1260" height="550"></canvas>
+<div id="instruccion_circulos" class="instruccion_circulos"> </div>
+<div class="c_principal c_1_2">
+  <h1 data-posabsbtn="170,320">Lavado de Activos</h1>
+  <div class="item_c">
+    <div class="txt_c">
+      <div class="cont_audio">
+        <div class="audio_c">
+          <audio controls style="margin-top: 15px;">
+            <source src="sounds/diap4a.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag. </audio>
+        </div>
+        <div class="subs_audio">
+          <div class="resaltado_especial">El lavado de activos es el “proceso mediante el cual las organizaciones criminales buscan dar apariencia de legalidad a los recursos generados de sus actividades ilícitas”. En términos prácticos, es el proceso para que el dinero sucio parezca limpio, de forma que las organizaciones criminales o delincuentes puedan usarlo y, en algunos casos, obtener ganancias. </div>
+          Existen 64 delitos fuente o actividades ilegales que pueden ser asociadas con LAFT. Algunos de estos son: </div>
+      </div>
+    </div>
+  </div>
+  <div class="item_c">
+    <div class="infografia"> <img src="images/diap4.png" height="170">
+      <map data-restriccion="no">
+        <area id="zona_sensible0" shape="circ" coords="84,76,70">
+        <area id="zona_sensible1" shape="circ" coords="291,76,70">
+        <area id="zona_sensible2" shape="circ" coords="505,76,70">
+        <area id="zona_sensible3" shape="circ" coords="701,76,70">
+        <area id="zona_sensible4" shape="circ" coords="895,76,70">
+        <area id="zona_sensible5" shape="circ" coords="1109,76,70">
+        <area id="zona_sensible6" shape="circ" coords="1305,76,70">
+        <area id="zona_sensible7" shape="circ" coords="184,252,70">
+        <area id="zona_sensible8" shape="circ" coords="388,252,70">
+        <area id="zona_sensible9" shape="circ" coords="601,252,70">
+        <area id="zona_sensible10" shape="circ" coords="799,252,70">
+        <area id="zona_sensible11" shape="circ" coords="991,252,70">
+        <area id="zona_sensible12" shape="circ" coords="1191,252,70">
+      </map>
+    </div>
+  </div>
+</div>
+<div class="c_principal c_4_6">
+  <h1 data-posabsbtn="170,320">Delitos ambientales</h1>
+  <div class="item_c">
+    <div class="txt_c">
+      <div class="cont_audio">
+        <div class="audio_c">
+          <audio controls style="margin-top: 15px;">
+            <source src="sounds/diap6a.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag. </audio>
+        </div>
+        <div class="subs_audio">
+          <div class="resaltado_especial">En 2022, a partir del análisis del contexto externo del Banco, se incluyeron, dentro de las actividades a observar, las consecuencias que la economía ilegal trae a los recursos naturales, lo que impulsó a la creación de la <span class="negrilla">Ley contra los delitos ambientales</span>, la cual enfatiza en la observancia de la <span class="negrilla">minería ilegal</span>. </div>
+          Se ha identificado por parte de la ONU que la minería ilegal tiene los siguientes efectos en el medio ambiente: </div>
+      </div>
+    </div>
+  </div>
+  <div class="item_c">
+    <div class="instruccion_interna">Pasa el mouse sobre los íconos y textos resaltados.</div>
+    <div class="infografia"> <img src="images/diap6.png" height="150">
+      <p></p>
+      <map data-restriccion="no">
+        <area id="zona_sensible13" shape="circ" coords="93,159,70">
+        <area id="zona_sensible14" shape="circ" coords="838,159,70">
+      </map>
+    </div>
+    <div id="zona_sensible15" class="negrilla_sensible">
+      <p><i class="fad fa-comment-exclamation"></i></p>
+      <p>Dato de interés</p>
+    </div>
+  </div>
+</div>
+<div class="c_masinfo c_1_2">
+  <h1>Explotación de Coltán </h1>
+  <div class="item_c"><img src="images/diap7.png" height="150"></div>
+  <div class="item_c">
+    <div class="cont_audio">
+      <div class="audio_c">
+        <audio controls style="margin-top: 15px;">
+          <source src="sounds/diap7a.mp3" type="audio/mpeg">
+          Your browser does not support the audio tag. </audio>
+      </div>
+      <div class="subs_audio">
+        <div>La ONU hace un llamado sobre las consecuencias de la explotación del Coltán, que originalmente es explorado en el Congo y que produjo el rebrote de violencia por el dominio de las reservas. </div>
+        <div class="resaltado_especial">Este mineral es muy utilizado para actividades de construcción de armas de destrucción masiva. </div>
+      </div>
+    </div>
+    <div class="instruccion_interna">Pasa el mouse sobre el dato de interés</div>
+    <div id="zona_sensible16" class="negrilla_sensible">
+      <p><i class="fad fa-comment-exclamation"></i></p>
+      <p>Dato de interés</p>
+    </div>
+  </div>
+</div>
+<div class="mas_personaje c_1">
+  <h1></h1>
+  <div class="item_c"></div>
+</div>
+<div class="c_principal c_1_1">
+  <h1 data-posabsbtn="170,320">Conocimiento del cliente</h1>
+  <div class="item_c">
+    <div class="txt_c">
+      <div class="cont_audio">
+        <div class="audio_c">
+          <audio controls style="margin-top: 15px;">
+            <source src="sounds/diap9.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag. </audio>
+        </div>
+        <div class="subs_audio"> El conocimiento del cliente es muy importante para prevenir el Lavado de Activos y la Financiación del Terrorismo, por ello el Banco Popular cuenta con lineamientos que te permiten tener un <span class="negrilla">conocimiento efectivo, eficiente y oportuno</span> de todos los clientes actuales y potenciales, así como verificar la información y los soportes de los mismos.
+          <div class="resaltado_especial">Esto implica conocer de manera permanente y actualizada <span class="negrilla">los datos, las características y los montos de las transacciones y operaciones de los clientes.</span> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="item_c"><img src="images/diap9.png" height="300"> </div>
+</div>
+<div class="c_principal c_1_1">
+  <h1 data-posabsbtn="170,320">Perfil de riesgo</h1>
+  <div class="item_c">
+    <div class="txt_c">
+      <div class="cont_audio">
+        <div class="audio_c">
+          <audio controls style="margin-top: 15px;">
+            <source src="sounds/diap11a.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag. </audio>
+        </div>
+        <div class="subs_audio"> </div>
+      </div>
+      <div class="instruccion_interna">Pasa el mouse sobre los textos resaltados</div>
+      <div>El perfil de riesgo se construye teniendo en cuenta unos <span class="negrilla_sensible" id="zona_sensible17">factores generales</span> y unos <span class="negrilla_sensible" id="zona_sensible18">factores independientes</span> que al combinarse dan como resultado el nivel de riesgo en el que se va a ubicar el potencial cliente / cliente. </div>
+    </div>
+  </div>
+  <div class="item_c"><img src="images/diap11.png" height="220">
+    <div class="instruccion_interna">Pulsa el botón para conocer todos los factores</div>
+    <a href="documents/factor_riesgo.pdf" class="descarga" download>Descargar: listado de factores </a> </div>
+</div>
+<div class="c_principal c_1_3">
+  <h1 data-posabsbtn="170,320">Debida diligencia</h1>
+  <div class="item_c">
+    <div class="txt_c" style="width: 250px;">
+      <div class="cont_audio">
+        <div class="audio_c">
+          <audio controls style="margin-top: 15px;">
+            <source src="sounds/diap13a.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag. </audio>
+        </div>
+        <div class="subs_audio">
+          <div class="resaltado_especial">La debida diligencia se define como “ejecutar algo con suficiente cuidado”. En el caso de SARLAFT, se asocia con el conocimiento de los potenciales clientes y clientes. </div>
+          <div>En esta tabla se muestra la debida diligencia para cada nivel de riesgo: </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="item_c">
+    <div class="instruccion_interna">Pasa el mouse sobre los textos resaltados</div>
+    <table class="tabla_estilo" style="text-align: center; margin: auto;">
+      <tr>
+        <th> Según numeral 4.2.2.2.1.4 CBJ </th>
+        <th colspan="4"> <span class="negrilla_sensible" id="zona_sensible19">Variables cualitativas o cuantitativas del Factor Personas</span> </th>
+      </tr>
+      <tr>
+        <th> Nivel de riesgo </th>
+        <th> Bajo </th>
+        <th> Moderado </th>
+        <th> Alto</th>
+        <th> Extremo </th>
+      </tr>
+      <tr>
+        <th><span class="negrilla_sensible" id="zona_sensible20">Proceso de conocimiento del cliente</span></th>
+        <td> Debida diligencia simplificada </td>
+        <td> Debida diligencia normal </td>
+        <td> Debida diligencia mejorada </td>
+        <td> Debida diligencia intensificada </td>
+      </tr>
+      <tr>
+        <th><span class="negrilla_sensible" id="zona_sensible21">Proceso de actualización de información</span></th>
+        <td> Mínimo 1 vez cada 3 años </td>
+        <td> Mínimo 1 vez cada 3 años </td>
+        <td> Mínimo 1 vez al año </td>
+        <td> Mínimo 1 vez al año </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="c_principal c_2_6">
+  <h1 data-posabsbtn="700,220">Procesos asociados al conocimiento del cliente</h1>
+  <div class="item_c">
+    <h1></h1>
+  </div>
+  <div class="item_c" style="margin: 0 30px;">
+    <div class="txt_interno c_1">
+      <h1>Inicio</h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap15.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio">Para llevar a cabo las actividades de debida diligencia se deben tener en cuenta cuatro aspectos importantes.</div>
+        </div>
+        <div class='instruccion_interna'><span class='indica_instclic'></span>Pulsa los botones para profundizar en cada uno de estos.</div>
+      </div>
+    </div>
+    <div class="txt_interno c_1">
+      <h1>Listas vinculantes</h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 5px;">
+              <source src="sounds/diap16a.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio"></div>
+        </div>
+        <div class="instruccion_interna" style="margin-bottom: -5px; margin-top: -5px;">Pasa el mouse sobre los textos resaltados</div>
+        <div class="txt_c" >
+          <table style="text-align: center; margin: auto; line-height: 17px; font-size: 11px;">
+            <tr>
+              <td colspan="2"><div class="resaltado_especial">Para realizar una debida diligencia, toda entidad vigilada por la Superintendencia Financiera de Colombia está en la obligación de consultar las <span class="negrilla_sensible" id="zona_sensible22">listas vinculantes</span> previamente a la vinculación de un potencial cliente y durante la relación con el mismo, de manera que, de ser hallado en ellas, se proceda como corresponda. </div>
+                <div>Las listas que tienen un reconocimiento legal en Colombia son: </div></td>
+            </tr>
+            <tr>
+              <td><table class="lista_vinetas">
+                  <tr>
+                    <td class="vineta"></td>
+                    <td><a href="https://www.un.org/securitycouncil/es/content/un-sc-consolidated-list" style="color: #00D740; text-decoration: underline;" target="_blank">Listas del Consejo de Seguridad de las Naciones Unidas</a></td>
+                  </tr>
+                  <tr>
+                    <td class="vineta"></td>
+                    <td><a href="https://www.consilium.europa.eu/es/policies/fight-against-terrorism/terrorist-list/" style="color: #00D740; text-decoration: underline;" target="_blank">Lista de Terroristas de Europa y Lista de la Unión Europea de Organizaciones Terroristas</a></td>
+                  </tr>
+                  <tr>
+                    <td class="vineta"></td>
+                    <td><a href="https://www.state.gov/foreign-terrorist-organizations" style="color: #00D740; text-decoration: underline;" target="_blank">Listas de Terroristas de los Estados Unidos de América</a></td>
+                  </tr>
+                </table></td>
+              <td style="width: 420px;"><img src="images/diap16.png" height="120"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="txt_interno c_1">
+      <h1>Personas Expuestas Políticamente</h1>
+      <div class="item_c">
+        <div class="txt_internob c_1">
+          <h1>Inicio</h1>
+          <div class="item_c">
+            <div class="cont_audio">
+              <div class="audio_c">
+                <audio controls style="margin-top: 15px;">
+                  <source src="sounds/diap17a.mp3" type="audio/mpeg">
+                  Your browser does not support the audio tag. </audio>
+              </div>
+              <div class="subs_audio">Se considera como Personas Expuestas Políticamente (PEP) a: </div>
+            </div>
+            <table style="text-align: center; margin: auto;">
+              <tr>
+                <td><div class="infografia"> <img src="images/diap17.png" height="120">
+                    <map data-restriccion="no">
+                      <area id="zona_sensible23" shape="circ" coords="74,81,70">
+                      <area id="zona_sensible24" shape="circ" coords="259,81,70">
+                      <area id="zona_sensible25" shape="circ" coords="444,81,70">
+                    </map>
+                  </div></td>
+                <td><div class="instruccion_interna">Pulsa el botón para ampliar la información</div>
+                  <a href="documents/Personas_Expuestas_Políticamente_(PEP).pdf" class="descarga" download>Descargar</a></td>
+              </tr>
+            </table>
+            <div class='instruccion_interna'>Pulsa el botón de abajo<span class='indica_instclicb'></span></div>
+          </div>
+        </div>
+        <div class="txt_internob c_1" style="margin-top: -60px;">
+          <h1>PEP extranjeros</h1>
+          <div class="item_c">
+            <div class="cont_audio">
+              <div class="audio_c">
+                <audio controls style="margin-top: 15px;">
+                  <source src="sounds/diap18a.mp3" type="audio/mpeg">
+                  Your browser does not support the audio tag. </audio>
+              </div>
+              <div class="subs_audio">Adicionalmente, se hablará de PEP extranjeros en los siguientes casos: </div>
+            </div>
+            <div class="infografia"> <img src="images/diap18.png" height="180">
+              <map data-restriccion="no">
+                <area id="zona_sensible26" shape="circ" coords="73,217,70">
+                <area id="zona_sensible27" shape="circ" coords="243,94,70">
+                <area id="zona_sensible28" shape="circ" coords="243,340,70">
+                <area id="zona_sensible29" shape="circ" coords="398,217,70">
+                <area id="zona_sensible30" shape="circ" coords="1093,217,70">
+                <area id="zona_sensible31" shape="circ" coords="1253,105,70">
+                <area id="zona_sensible32" shape="circ" coords="1253,344,70">
+              </map>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="txt_interno c_2_3">
+      <h1>Beneficiario final</h1>
+      <div class="item_c">
+        <div class="cont_audio">
+          <div class="audio_c">
+            <audio controls style="margin-top: 15px;">
+              <source src="sounds/diap19a.mp3" type="audio/mpeg">
+              Your browser does not support the audio tag. </audio>
+          </div>
+          <div class="subs_audio">Un Beneficiario Final es toda persona natural que, sin ser necesariamente cliente, reúne cualquiera de las siguientes características:</div>
+        </div>
+      </div>
+      <div class="item_c">
+        <div class="instruccion_interna">Pasa el mouse sobre los íconos y textos resaltados</div>
+        <div class="infografia"> <img src="images/diap19.png" height="180">
+          <p></p>
+          <map data-restriccion="no">
+            <area id="zona_sensible33" shape="circ" coords="93,212,70">
+            <area id="zona_sensible34" shape="circ" coords="263,89,70">
+            <area id="zona_sensible35" shape="circ" coords="263,332,70">
+          </map>
+        </div>
+        <div id="zona_sensible36" class="negrilla_sensible">
+          <p><i class="fad fa-comment-exclamation"></i></p>
+          <p>Dato de interés</p>
+        </div>
+      </div>
+    </div>
+    <div class="txt_interno c_1">
+      <h1>Países de mayor riesgo </h1>
+      <div class="item_c">
+        <div class="txt_internob c_1">
+          <h1>Inicio</h1>
+          <div class="item_c">
+            <video style="height: 220px;" autoplay loop muted   >
+              <source src="images/diap20gif.mp4" type="video/mp4">
+              Your browser does not support the video tag. </video>
+            <div class='instruccion_interna'>Pulsa los botones de abajo para conocer aspectos importantes relacionados con operaciones con países de mayor riesgo.<span class='indica_instclicb'></span></div>
+          </div>
+        </div>
+        <style>
+		  .resaltado_especial > div, .enunciado_selvar > div, .reto_ovsel, .mensaje_puntfin {
+    font-size: 14px;
+    line-height: 24px;
+}
+		  </style>
+        <div class="txt_internob c_1_2" style="margin-top: -50px;">
+          <h1>1</h1>
+          <div class="item_c"><img src="images/diap21.png" height="200"></div>
+          <div class="item_c">
+            <div class="instruccion_interna">Pasa el mouse sobre los textos resaltados</div>
+            <div class="cont_audio">
+              <div class="audio_c">
+                <audio controls style="margin-top: 15px;">
+                  <source src="sounds/diap21a.mp3" type="audio/mpeg">
+                  Your browser does not support the audio tag. </audio>
+              </div>
+              <div class="subs_audio"></div>
+            </div>
+            <div class="resaltado_especial">Para establecer operaciones y/o relaciones comerciales con <span class="negrilla">clientes de países donde no se apliquen razonablemente las recomendaciones del GAFI</span>, será indispensable que el cargo responsable de la Dirección de Comercio Exterior de la Gerencia de Tesorería consulte previamente con la <span class="negrilla_sensible" id="zona_sensible37">Gerencia de Cumplimiento</span>, de acuerdo con la información pública disponible, el grado de incumplimiento del país de origen a la fecha de realización de la operación. </div>
+          </div>
+        </div>
+        <div class="txt_internob c_1_2" style="margin-top: -40px;">
+          <h1>2</h1>
+          <div class="item_c"><img src="images/diap22.png" height="200"></div>
+          <div class="item_c">
+            <div class="cont_audio">
+              <div class="audio_c">
+                <audio controls style="margin-top: 15px;">
+                  <source src="sounds/diap22a.mp3" type="audio/mpeg">
+                  Your browser does not support the audio tag. </audio>
+              </div>
+              <div class="subs_audio">
+                <div class="resaltado_especial">Para establecer relaciones comerciales y/u operaciones con <span class="negrilla">personas que residan o cuyos ingresos provengan o se dirijan a países donde no se aplican suficientemente las recomendaciones del GAFI</span>, se seguirán procedimientos más estrictos. </div>
+              </div>
+            </div>
+            <div class="instruccion_interna">Pasa el mouse sobre el dato de interés</div>
+            <div id="zona_sensible38" class="negrilla_sensible">
+              <p><i class="fad fa-comment-exclamation"></i></p>
+              <p>Dato de interés</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="c_principal c_1">
+  <h1 data-posabsbtn="170,320">Todos aportamos para evitar ser usados como un medio para LAFT</h1>
+  <div class="item_c">
+    <video  controls preload="auto">
+      <source src="video/diap1.mp4" type="video/mp4">
+      Your browser does not support the video tag. </video>
+  </div>
+</div>
+<div class="c_principal c_1-1">
+  <h1  data-posabsbtn="700,220">Actividad</h1>
+  <div class="item_c">
+    <div class="txt_c">
+      <table style="text-align: center; margin: auto; width: 800px;">
+        <td><div class="cont_audio">
+              <div class="audio_c">
+                <audio controls style="margin-top: 15px;">
+                  <source src="sounds/diap26.mp3" type="audio/mpeg">
+                  Your browser does not support the audio tag. </audio>
+              </div>
+              <div class="subs_audio">
+                <div>Llegó el momento de impedir que Gerard utilice el banco para lavar el dinero que ha obtenido de manera ilícita. <br>
+                  Para ello será necesario que apliques tus conocimientos. <br>
+                  <br>
+                  Pulsa el botón “Ir a las preguntas” para resolver algunas actividades.</div>
+              </div>
+            </div></td>
+          <td style="width: 240px;"><img src="images/diap26.png" height="300"></td>
+      </table>
+    </div>
+  </div>
+  <div class="item_c">
+    <div class="boton_siguiente">
+      <div id="txt_btnsig2">IR A LAS PREGUNTAS </div>
+    </div>
+  </div>
+</div>
+<div id="pop0" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Enriquecimiento ilícito </div>
+<div id="pop1" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4c.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Secuestro extorsivo </div>
+<div id="pop2" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4d.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Extorsión </div>
+<div id="pop3" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4e.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Tráfico de migrantes – Trata de personas </div>
+<div id="pop4" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4f.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Rebelión </div>
+<div id="pop5" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4g.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Tráfico de armas </div>
+<div id="pop6" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4h.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Tráfico de menores de edad </div>
+<div id="pop7" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4i.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Tráfico de drogas tóxicas, estupefacientes o sustancias psicotrópicas </div>
+<div id="pop8" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4j.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Delitos contra la administración pública </div>
+<div id="pop9" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4k.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Delitos contra el sistema financiero </div>
+<div id="pop10" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4l.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Financiación del terrorismo y administración de recursos relacionados con actividades terroristas </div>
+<div id="pop11" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4m.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Fraude aduanero o favorecimiento y facilitación del contrabando </div>
+<div id="pop12" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap4n.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Contrabando de hidrocarburos o sus derivados </div>
+<div id="pop13" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap6b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Genera un aumento en la tasa de deforestación, terminando con hectáreas productivas de tierra y obligando al cambio del uso del suelo. </div>
+<div id="pop14" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap6c.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Afecta a las comunidades que deben buscar nuevas alternativas de recursos para suplir sus necesidades y esto, sumado a la falta de oportunidades en riesgo, lleva a realizar actividades ilícitas asociadas al lavado de activos. </div>
+<div id="pop15" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap6d.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  La actividad minera se encuentra regulada en la <span class="negrilla">Ley 2177 de 2021</span>, por esto en nuestra Entidad esta actividad se encuentra catalogada como de <span class="negrilla">riesgo extremo</span>, siendo necesario realizar actividades de debida diligencia intensificada para aquellos potenciales clientes que hagan parte de cualquier parte de la cadena del sector minero. </div>
+<div id="pop16" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap7b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  El Coltán es un mineral estratégico para Colombia, de acuerdo con el Plan de Desarrollo Minero a 2025. 
+  En 2012 el Servicio Geológico Colombiano identificó un área potencial en Colombia para el Coltán, la cual se estima es de 2.391.400 hectáreas y está ubicada en los departamentos del Vichada y Guainía, riesgos que se evalúan desde LAFT. </div>
+<div id="pop17" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap11b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Los factores generales técnicamente se conocen como los “factores de riesgo” y se refieren a todos los agentes (circunstancias) generadoras del riesgo de LAFT. </div>
+<div id="pop18" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap11c.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Los factores independientes son la calidad de PEP y el conocimiento del beneficiario final PEP. </div>
+<div id="pop19" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Este proceso transversal es el control automático que se hace de verificación de listas, el cual, en la actualidad, se completa en CRM, pero con el cambio a SIEBEL se hará de forma automática, para conocer desde el potencial cliente si la vinculación se detiene por coincidencia en listas vinculantes. </div>
+<div id="pop20" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13c.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  La debida diligencia avanza (se intensifica y se complementa) según el nivel de riesgo. </div>
+<div id="pop21" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap13d.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  La actualización se puede hacer por medio de bases de datos, las cuales deberán ser certificadas por el Banco, atendiendo un proceso especial de cumplimiento al esquema de protección de datos.  No se puede completar información desde la primera línea de defensa sin ser verificada directamente con el potencial cliente / cliente. </div>
+<div id="pop22" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap16b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Estas listas son unas <span class="negrilla">bases de datos</span> que reflejan la información de personas que pueden presentar actividades sospechosas, investigaciones, procesos o condenas relacionados con Lavado de Activos, Financiación del terrorismo, Financiación a la Proliferación de Armas de Destrucción Masiva (FPADM) u otras actividades delictivas, responsabilidades fiscales, antecedentes disciplinarios, judiciales, entre otros. </div>
+<div id="pop23" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap17b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Los servidores públicos que tienen asignadas o delegadas funciones de expedición de normas o regulaciones, dirección general, formulación de políticas institucionales y adopción de planes, programas y proyectos, manejo directo de bienes, dineros o valores del Estado, administración de justicia o facultades administrativo-sancionatorias. </div>
+<div id="pop24" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap17c.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Los particulares que tengan a su cargo la dirección o manejo de recursos en los movimientos o partidos políticos (ordenación de gasto, contratación pública, gerencia de proyectos de inversión, pagos, liquidaciones y administración de bienes muebles e inmuebles). </div>
+<div id="pop25" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap17d.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Las personas que desempeñan funciones públicas destacadas en otro país. </div>
+<div id="pop26" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap18b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Jefes de Estado, jefes de Gobierno, ministros, subsecretarios o secretarios de Estado. </div>
+<div id="pop27" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap18c.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Congresistas o parlamentarios. </div>
+<div id="pop28" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap18d.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Miembros de tribunales supremos, tribunales constitucionales u otras altas instancias judiciales cuyas decisiones no admitan normalmente recurso, salvo en circunstancias excepcionales. </div>
+<div id="pop29" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap18e.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Miembros de tribunales o de las juntas directivas de bancos centrales. </div>
+<div id="pop30" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap18f.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Embajadores, encargados de negocios y altos funcionarios de las fuerzas armadas. </div>
+<div id="pop31" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap18g.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Miembros de los órganos administrativos, de gestión o de supervisión de empresas de propiedad estatal. </div>
+<div id="pop32" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap18h.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Representantes legales, directores, subdirectores y/o miembros de las juntas directivas de organizaciones internacionales. </div>
+<div id="pop33" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap19c.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Es aquella persona que, pese a no ser propietario de una participación mayoritaria del capital de la persona jurídica que actúa como cliente, <span class="negrilla">ejerce el control </span>de la persona jurídica, de acuerdo con lo establecido en los términos del artículo 261 del Código de Comercio. </div>
+<div id="pop34" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap19b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Es <span class="negrilla">propietaria</span>, individual o conjuntamente, directa o indirectamente de una participación superior al 5 % del capital social, aporte o participación en la persona jurídica que actúa como cliente. </div>
+<div id="pop35" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap19d.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Es aquella persona por cuenta de quien se lleva a cabo una transacción. Se entiende que esta persona es sobre quien recaen los <span class="negrilla">efectos económicos </span>de dicha transacción. </div>
+<div id="pop36" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap19e.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  El Banco debe tener en cuenta las notas interpretativas de las recomendaciones relacionadas con el beneficiario final emitidas por el Grupo de Acción Financiera Internacional para la Prevención del Lavado de Activos (GAFI). </div>
+<div id="pop37" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap21b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  Para lograr un adecuado control de las jurisdicciones de mayor riesgo, la Gerencia de Cumplimiento dispondrá el suministro actualizado de la relación de países con los cuales no se deberán adelantar transacciones. </div>
+<div id="pop38" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap22b.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+  El listado de estos países se publica en un boletín general para el conocimiento de todos en el Banco. </div>
+<div id="pop39" class="pop">
+  <div class="cont_audio">
+    <div class="audio_c">
+      <audio controls style="margin-top: 15px;">
+        <source src="sounds/diap.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag. </audio>
+    </div>
+    <div class="subs_audio"></div>
+  </div>
+</div>
+</body>
+</html>
